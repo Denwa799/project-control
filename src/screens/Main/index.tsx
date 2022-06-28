@@ -1,10 +1,26 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import { useNavigation } from "@react-navigation/native";
+import React from "react";
+import { View } from "react-native";
+import { AppList } from "../../components/AppList";
+import { DATA } from "../../data";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { TeamScreenNavigateType } from "./types";
+import { ITeam } from "../../models/ITeam";
 
 export const MainScreen = () => {
-    return (
-        <View>
-            <Text>MainScreen</Text>
-        </View>
-    );
+  const navigation = useNavigation<StackNavigationProp<TeamScreenNavigateType>>();
+
+  navigation.setOptions({
+    title: 'Команды'
+  })
+
+  const openTeamHandler = (team: ITeam) => {
+    navigation.navigate("Team", { projects: team.projects });
+  };
+
+  return (
+    <View>
+      <AppList data={DATA} onOpen={openTeamHandler}/>
+    </View>
+  );
 };

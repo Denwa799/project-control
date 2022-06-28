@@ -6,6 +6,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { ITabBarIcon } from './types';
 import { MainScreen } from '../screens/Main';
 import { ProfileScreen } from '../screens/Profile';
+import { TaskNavigation } from './TaskNavigation';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -18,7 +19,7 @@ export const BottomNavigation = () => {
         >
             <Tab.Screen
                 name="MainScreen"
-                component={MainScreen}
+                component={TaskNavigation}
                 options={{
                     tabBarLabel: 'Задачи',
                     tabBarIcon: (options: ITabBarIcon) => (
