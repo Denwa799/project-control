@@ -20,10 +20,6 @@ export const BottomNavigation = () => {
         <Tab.Navigator
             shifting={true}
             barStyle={{backgroundColor: THEME.SECOND_COLOR}}
-            screenOptions={{
-                tabBarActiveTintColor: THEME.MAIN_COLOR,
-                headerShown: false
-            }}
         >
             <Tab.Screen
                 name="MainScreen"
