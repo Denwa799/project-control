@@ -1,18 +1,13 @@
 import React from 'react';
 import {createMaterialBottomTabNavigator} from "@react-navigation/material-bottom-tabs";
-import {MainScreen} from '../screens/Main/MainScreen';
-import {ProfileScreen} from '../screens/Profile/ProfileScreen';
-import {LIGHT_THEME} from '../theme';
+import {THEME} from '../theme';
 import {Ionicons} from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
+import { ITabBarIcon } from './types';
+import { MainScreen } from '../screens/Main';
+import { ProfileScreen } from '../screens/Profile';
 
 const Tab = createMaterialBottomTabNavigator();
-const THEME = LIGHT_THEME;
-
-interface ITabBarIcon {
-    focused: boolean;
-    color: string;
-}
 
 export const BottomNavigation = () => {
 
@@ -35,9 +30,9 @@ export const BottomNavigation = () => {
                 name="ProfileScreen"
                 component={ProfileScreen}
                 options={{
-                    tabBarLabel: 'Аккаунт',
+                    tabBarLabel: 'Профиль',
                     tabBarIcon: (options: ITabBarIcon) => (
-                        <FontAwesome5 name="user" size={24} color={options.color} />
+                        <FontAwesome5 name="user" size={22} color={options.color} />
                     )
                 }}
             />

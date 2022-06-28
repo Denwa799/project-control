@@ -1,11 +1,14 @@
-export const LIGHT_THEME = {
+const LIGHT_THEME = {
     MAIN_COLOR: '#E85D20',
     SECOND_COLOR: '#15545F',
     THIRD_COLOR: '#F7AF5D',
     WHITE_COLOR: '#FFF',
+    SECOND_WHITE: '#F1F1F1',
     BLACK_COLOR: '#000',
-    DANGER_COLOR: '#d81b60',
+    DANGER_COLOR: '#D81B60',
 }
+
+export const THEME = LIGHT_THEME;
 
 export const SIZES = {
     // global sizes

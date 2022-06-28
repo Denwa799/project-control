@@ -1,4 +1,11 @@
 import React, {FC} from 'react';
-import {BottomNavigation} from "./BottomNavigation";
+import {NavigationContainer} from "@react-navigation/native";
+import { AuthNavigation } from './AuthNavigation';
 
-export const AppNavigation: FC = () => <BottomNavigation />
+export const AppNavigation: FC = () => {
+    return (
+        <NavigationContainer>
+            <AuthNavigation/>
+        </NavigationContainer>
+    );
+}
