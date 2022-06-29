@@ -19,7 +19,8 @@ export const AuthProvider: FC = ({children}) => {
 
             await addDoc(collection(db, 'users'), {
                 _id: user.uid,
-                displayName: name
+                displayName: name,
+                email
             });
         } catch (error: any) {
             Alert.alert('Ошибка регистрации');

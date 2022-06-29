@@ -2,13 +2,14 @@ import { useNavigation } from "@react-navigation/native";
 import React, { useEffect } from "react";
 import { View } from "react-native";
 import { AppList } from "../../components/AppList";
-import { DATA } from "../../data";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { TeamScreenNavigateType } from "./types";
 import { ITeam } from "../../models/ITeam";
+import { useTeams } from "../../hooks/useTeams";
 
 export const MainScreen = () => {
   const navigation = useNavigation<StackNavigationProp<TeamScreenNavigateType>>();
+  const {teams, isLoading} = useTeams();
 
   useEffect(() => {
     navigation.setOptions({
@@ -22,7 +23,7 @@ export const MainScreen = () => {
 
   return (
     <View>
-      <AppList data={DATA} onOpen={openTeamHandler}/>
+      <AppList data={teams} onOpen={openTeamHandler}/>
     </View>
   );
 };

@@ -1,7 +1,7 @@
 import { IProject } from "./IProject";
 
 export interface ITeam {
-  id: string;
+  _id: string;
   name: string;
   projects: IProject[];
 }

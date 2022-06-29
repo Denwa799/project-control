@@ -8,7 +8,7 @@ export const AppTextList: FC<IAppTextList> = ({data}) => {
     <View>
       <FlatList
         data={data}
-        keyExtractor={item => item.id.toString()}
+        keyExtractor={item => item._id.toString()}
         renderItem={({item}) => <AppTextCard text={item.text} responsible={item.responsible} status={item.status}/>}
       />
     </View>

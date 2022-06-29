@@ -1,7 +1,7 @@
 import { ITask } from "./ITask";
 
 export interface IProject {
-  id: string;
+  _id: string;
   name: string;
   tasks: ITask[];
 }
