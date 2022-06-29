@@ -4,4 +4,5 @@ export interface IAppTextCard {
   status: "notCompleted" | "inProgress" | "done";
   responsible: string;
   onDelete?: (_id: string) => void;
+  onChange?: (_id: string, text: string, responsible: string) => void;
 }

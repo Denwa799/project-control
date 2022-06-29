@@ -5,9 +5,13 @@ export interface IProjectScreen {
 export interface IModals {
   teamId: string;
   projectId: string;
-  dialogVisible: boolean;
-  setDialogVisible: (value: boolean) => void;
-  modalVisible: boolean;
-  setModalVisible: (value: boolean) => void;
+  dialogDeleteVisible: boolean;
+  setDialogDeleteVisible: (value: boolean) => void;
+  modalCreateVisible: boolean;
+  setModalCreateVisible: (value: boolean) => void;
   taskId: string;
+  modalChangeVisible: boolean;
+  setModalChangeVisible: (value: boolean) => void;
+  text: string;
+  responsible: string;
 }
