@@ -2,21 +2,21 @@ import React, { useEffect, useState } from "react";
 import { db } from "../../firebase";
 import { collection, query, onSnapshot } from "firebase/firestore";
 import { Alert } from "react-native";
-import { ITask } from "../../models/ITask";
+import { IProject } from "../../models/IProject";
 
-export const useTasks = (teamId: string, projectId: string) => {
-  const [tasks, setTasks] = useState<ITask[]>([]);
+export const useProjects = (teamId: string) => {
+  const [projects, setProjects] = useState<IProject[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const projectsRef = collection(db, `teams/${teamId}/projects/${projectId}/tasks`);
+    const projectsRef = collection(db, `teams/${teamId}/projects`);
     const queryRef = query(projectsRef);
 
     onSnapshot(queryRef, snapshot => {
-        setTasks(snapshot.docs.map(doc => ({
+        setProjects(snapshot.docs.map(doc => ({
           _id: doc.id,
           ...doc.data()
-        } as ITask)));
+        } as IProject)));
         setIsLoading(false);
       },
       error => {
@@ -24,5 +24,5 @@ export const useTasks = (teamId: string, projectId: string) => {
       });
   }, []);
 
-  return { tasks, isLoading };
+  return { projects, isLoading };
 };

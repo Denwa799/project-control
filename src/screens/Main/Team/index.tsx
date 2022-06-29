@@ -5,22 +5,29 @@ import { ITeamScreen, ProjectScreenNavigateType } from "./types";
 import { AppList } from "../../../components/AppList";
 import { IProject } from "../../../models/IProject";
 import { StackNavigationProp } from "@react-navigation/stack";
+import { useProjects } from "../../../hooks/useProjects";
+import { styles } from "./styles";
+import { AppLoader } from "../../../components/AppLoader";
 
-export const TeamScreen: FC<ITeamScreen> = ({route: {params}}) => {
+export const TeamScreen: FC<ITeamScreen> = ({ route: { params } }) => {
   const navigation = useNavigation<StackNavigationProp<ProjectScreenNavigateType>>();
-  const { teamId, projects } = params;
+  const { teamId } = params;
+
+  const { projects, isLoading } = useProjects(teamId);
 
   useEffect(() => {
     navigation.setOptions({
-      title: 'Проекты'
-    })
+      title: "Проекты"
+    });
   }, []);
 
   const openProjectHandler = (project: IProject) => {
-    navigation.navigate("Project", { teamId, projectId: project._id,  tasks: project.tasks });
+    navigation.navigate("Project", { teamId, projectId: project._id });
   };
 
-  return (
+  return isLoading
+    ? <View style={styles.loader}><AppLoader/></View>
+    : (
     <View>
       <AppList data={projects} onOpen={openProjectHandler}/>
     </View>
