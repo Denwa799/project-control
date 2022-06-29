@@ -6,6 +6,8 @@ export interface ITeamScreen {
 
 export type ProjectScreenNavigateType = {
   Project: {
+    teamId: string;
+    projectId: string;
     tasks: ITask[];
   };
 };

@@ -18,7 +18,7 @@ export const MainScreen = () => {
   }, []);
 
   const openTeamHandler = (team: ITeam) => {
-    navigation.navigate("Team", { projects: team.projects });
+    navigation.navigate("Team", { teamId: team._id , projects: team.projects });
   };
 
   return (

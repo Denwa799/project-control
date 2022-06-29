@@ -8,7 +8,7 @@ import { StackNavigationProp } from "@react-navigation/stack";
 
 export const TeamScreen: FC<ITeamScreen> = ({route: {params}}) => {
   const navigation = useNavigation<StackNavigationProp<ProjectScreenNavigateType>>();
-  const { projects } = params;
+  const { teamId, projects } = params;
 
   useEffect(() => {
     navigation.setOptions({
@@ -17,7 +17,7 @@ export const TeamScreen: FC<ITeamScreen> = ({route: {params}}) => {
   }, []);
 
   const openProjectHandler = (project: IProject) => {
-    navigation.navigate("Project", { tasks: project.tasks });
+    navigation.navigate("Project", { teamId, projectId: project._id,  tasks: project.tasks });
   };
 
   return (

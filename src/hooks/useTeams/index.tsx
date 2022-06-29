@@ -8,8 +8,8 @@ export const useTeams = () => {
   const [teams, setTeams] = useState<ITeam[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const teamsRef = collection(db, 'teams');
-  const queryRef = query(teamsRef, orderBy('name', 'asc'));
+  const teamsRef = collection(db, "teams");
+  const queryRef = query(teamsRef, orderBy("name", "asc"));
 
   useEffect(() => onSnapshot(
     queryRef,
@@ -21,9 +21,10 @@ export const useTeams = () => {
       setIsLoading(false);
     },
     error => {
-      Alert.alert('Ошибка загрузки списка');
+      Alert.alert("Ошибка загрузки списка");
     }
   ), []);
 
   return { teams, isLoading };
 };
+
