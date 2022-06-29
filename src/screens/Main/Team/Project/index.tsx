@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { IProjectScreen } from "./types";
@@ -8,9 +8,11 @@ export const ProjectScreen: FC<IProjectScreen> = ({route: {params}}) => {
   const navigation = useNavigation();
   const { tasks } = params;
 
-  navigation.setOptions({
-    title: 'Задачи'
-  })
+  useEffect(() => {
+    navigation.setOptions({
+      title: 'Задачи'
+    })
+  }, []);
 
   return (
     <View>

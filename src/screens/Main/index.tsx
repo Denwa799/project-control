@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import React from "react";
+import React, { useEffect } from "react";
 import { View } from "react-native";
 import { AppList } from "../../components/AppList";
 import { DATA } from "../../data";
@@ -10,9 +10,11 @@ import { ITeam } from "../../models/ITeam";
 export const MainScreen = () => {
   const navigation = useNavigation<StackNavigationProp<TeamScreenNavigateType>>();
 
-  navigation.setOptions({
-    title: 'Команды'
-  })
+  useEffect(() => {
+    navigation.setOptions({
+      title: 'Команды'
+    })
+  }, []);
 
   const openTeamHandler = (team: ITeam) => {
     navigation.navigate("Team", { projects: team.projects });
