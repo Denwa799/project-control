@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     height: '90%'
   },
   container: {
-    paddingBottom: 24
+    paddingBottom: 24,
   },
   radioBtns: {
     marginTop: 10

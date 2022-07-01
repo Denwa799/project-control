@@ -14,6 +14,7 @@ export const TaskNavigation = () => {
         backgroundColor: THEME.SECOND_COLOR
       },
       headerTintColor: THEME.WHITE_COLOR,
+      animation: 'slide_from_right'
     }}>
       <Stack.Screen name='Teams' component={MainScreen}/>
       <Stack.Screen name='Team' component={TeamScreen}/>

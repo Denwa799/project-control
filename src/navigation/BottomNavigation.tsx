@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {createMaterialBottomTabNavigator} from "@react-navigation/material-bottom-tabs";
-import {THEME} from '../theme';
 import {Ionicons} from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { ITabBarIcon } from './types';
 import { ProfileScreen } from '../screens/Profile';
 import { TaskNavigation } from './TaskNavigation';
+import { Keyboard } from 'react-native';
+import { styles } from './styles';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -14,7 +15,7 @@ export const BottomNavigation = () => {
     return (
         <Tab.Navigator
             shifting={true}
-            barStyle={{backgroundColor: THEME.SECOND_COLOR}}
+            barStyle={styles.bottomNavigation}
         >
             <Tab.Screen
                 name="MainScreen"
