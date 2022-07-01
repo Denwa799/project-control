@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../../firebase";
-import { collection, query, onSnapshot } from "firebase/firestore";
+import { collection, query, onSnapshot, orderBy } from "firebase/firestore";
 import { Alert } from "react-native";
 import { ITask } from "../../models/ITask";
 
@@ -10,7 +10,7 @@ export const useTasks = (teamId: string, projectId: string) => {
 
   useEffect(() => {
     const projectsRef = collection(db, `teams/${teamId}/projects/${projectId}/tasks`);
-    const queryRef = query(projectsRef);
+    const queryRef = query(projectsRef, orderBy("created", "asc"));
 
     onSnapshot(queryRef, snapshot => {
         setTasks(snapshot.docs.map(doc => ({

@@ -21,10 +21,11 @@ export const styles = StyleSheet.create({
   },
   text: {
     fontSize: SIZES.body3,
-    color: THEME.BLACK_COLOR
+    color: THEME.WHITE_COLOR_90
   },
   responsible: {
     fontSize: SIZES.body4,
+    color: THEME.WHITE_COLOR_90
   },
   red: {
     backgroundColor: THEME.RED_COLOR,
@@ -34,5 +35,8 @@ export const styles = StyleSheet.create({
   },
   green: {
     backgroundColor: THEME.GREEN_COLOR
+  },
+  blackText: {
+    color: THEME.BLACK_COLOR
   }
 });

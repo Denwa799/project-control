@@ -15,6 +15,7 @@ export const ProjectScreen: FC<IProjectScreen> = ({ route: { params } }) => {
   const [taskId, setTaskId] = useState("");
   const [text, setText] = useState("");
   const [responsible, setResponsible] = useState("");
+  const [status, setStatus] = useState("");
 
   const { teamId, projectId } = params;
   const { tasks, isLoading } = useTasks(teamId, projectId);
@@ -38,12 +39,13 @@ export const ProjectScreen: FC<IProjectScreen> = ({ route: { params } }) => {
     setDialogDeleteVisible(true);
   }, [taskId]);
 
-  const changeIconHandler = useCallback((_id: string, text: string, responsible: string) => {
+  const changeIconHandler = useCallback((_id: string, text: string, responsible: string, status: string) => {
     setTaskId(_id);
     setText(text);
     setResponsible(responsible);
+    setStatus(status)
     setModalChangeVisible(true);
-  }, [taskId, text, responsible]);
+  }, [taskId, text, responsible, status]);
 
   return isLoading
     ? <View style={styles.loader}><AppLoader/></View>
@@ -70,6 +72,7 @@ export const ProjectScreen: FC<IProjectScreen> = ({ route: { params } }) => {
           setModalChangeVisible={setModalChangeVisible}
           text={text}
           responsible={responsible}
+          status={status}
         />
       </View>
     );

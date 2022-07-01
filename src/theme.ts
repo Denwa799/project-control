@@ -9,6 +9,7 @@ const LIGHT_THEME = {
     RED_COLOR: '#e20d0d',
     YELLOW_COLOR: '#ffdc10',
     GREEN_COLOR: '#3ead13',
+    WHITE_COLOR_90: 'rgba(255,255,255,0.9)',
 }
 
 export const THEME = LIGHT_THEME;

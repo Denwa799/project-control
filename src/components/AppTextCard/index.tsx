@@ -35,14 +35,20 @@ export const AppTextCard: FC<IAppTextCard> = (
         ]}
       >
         <View style={styles.textContainer}>
-          <Text style={styles.text}>{text}</Text>
-          <Text style={styles.responsible}>{responsible}</Text>
+          <Text style={[
+            styles.text,
+            status === "inProgress" && styles.blackText,
+          ]}>{text}</Text>
+          <Text style={[
+            styles.responsible,
+            status === "inProgress" && styles.blackText,
+          ]}>{responsible}</Text>
         </View>
-        <TouchableHighlight onPress={onChange ? () => onChange(_id, text, responsible) : changeHandler} underlayColor='none'>
-          <MaterialCommunityIcons name="note-edit" size={24} color={THEME.BLACK_COLOR}/>
+        <TouchableHighlight onPress={onChange ? () => onChange(_id, text, responsible, status) : changeHandler} underlayColor='none'>
+          <MaterialCommunityIcons name="note-edit" size={24} color={status !== 'inProgress' ? THEME.WHITE_COLOR_90 : THEME.BLACK_COLOR}/>
         </TouchableHighlight>
         <TouchableHighlight onPress={onDelete ? () => onDelete(_id) : deleteHandler} underlayColor='none'>
-          <MaterialIcons name="delete" size={24} color={THEME.BLACK_COLOR}/>
+          <MaterialIcons name="delete" size={24} color={status !== 'inProgress' ? THEME.WHITE_COLOR_90 : THEME.BLACK_COLOR}/>
         </TouchableHighlight>
       </View>
     </AppContainer>

@@ -4,7 +4,6 @@ import {THEME} from '../theme';
 import {Ionicons} from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { ITabBarIcon } from './types';
-import { MainScreen } from '../screens/Main';
 import { ProfileScreen } from '../screens/Profile';
 import { TaskNavigation } from './TaskNavigation';
 
