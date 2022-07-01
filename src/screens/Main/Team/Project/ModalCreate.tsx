@@ -8,18 +8,23 @@ import { serverTimestamp } from "firebase/firestore";
 import { create } from "../../../../firebase";
 import { IModalCreate } from "./types";
 
-export const ModalCreate: FC<IModalCreate> = ({modalCreateVisible, setModalCreateVisible, collectionPath}) => {
-  const [createTextFieldValue, setCreateTextFieldValue] = useState("");
-  const [createResponsibleFieldValue, setCreateResponsibleFieldValue] = useState("");
+export const ModalCreate: FC<IModalCreate> = (
+  {
+    modalCreateVisible,
+    setModalCreateVisible,
+    collectionPath
+  }) => {
+  const [textFieldValue, setTextFieldValue] = useState("");
+  const [responsibleFieldValue, setResponsibleFieldValue] = useState("");
 
-  const [isCreateTextFieldError, setIsCreateTextFieldError] = useState(false);
-  const [isCreateResponsibleFieldError, setIsCreateResponsibleFieldError] = useState(false);
+  const [isTextFieldError, setIsTextFieldError] = useState(false);
+  const [isResponsibleFieldError, setIsResponsibleFieldError] = useState(false);
 
   const clearFields = useCallback(() => {
-    setCreateTextFieldValue("");
-    setCreateResponsibleFieldValue("");
-    setIsCreateTextFieldError(false);
-    setIsCreateResponsibleFieldError(false);
+    setTextFieldValue("");
+    setResponsibleFieldValue("");
+    setIsTextFieldError(false);
+    setIsResponsibleFieldError(false);
   }, []);
 
   const hideCreateModal = useCallback(() => {
@@ -27,29 +32,29 @@ export const ModalCreate: FC<IModalCreate> = ({modalCreateVisible, setModalCreat
     clearFields();
   }, [modalCreateVisible]);
 
-  const createTextFieldHandler = useCallback((value: string) => {
-    setCreateTextFieldValue(value);
-    setIsCreateTextFieldError(false);
-  }, [createTextFieldValue]);
+  const textFieldHandler = useCallback((value: string) => {
+    setTextFieldValue(value);
+    setIsTextFieldError(false);
+  }, [textFieldValue]);
 
-  const createResponsibleFieldHandler = useCallback((value: string) => {
-    setCreateResponsibleFieldValue(value);
-    setIsCreateResponsibleFieldError(false);
-  }, [createResponsibleFieldValue]);
+  const responsibleFieldHandler = useCallback((value: string) => {
+    setResponsibleFieldValue(value);
+    setIsResponsibleFieldError(false);
+  }, [responsibleFieldValue]);
 
   const addTask = useCallback(() => {
-    if (!createTextFieldValue) return setIsCreateTextFieldError(true);
-    if (!createResponsibleFieldValue) return setIsCreateResponsibleFieldError(true);
+    if (!textFieldValue) return setIsTextFieldError(true);
+    if (!responsibleFieldValue) return setIsResponsibleFieldError(true);
 
     const data = {
-      text: createTextFieldValue,
+      text: textFieldValue,
       status: "notCompleted",
-      responsible: createResponsibleFieldValue,
+      responsible: responsibleFieldValue,
       created: serverTimestamp()
     };
     create(collectionPath, data);
     hideCreateModal();
-  }, [createTextFieldValue, createResponsibleFieldValue]);
+  }, [textFieldValue, responsibleFieldValue]);
 
   return (
     <AppModal
@@ -57,17 +62,17 @@ export const ModalCreate: FC<IModalCreate> = ({modalCreateVisible, setModalCreat
       onDismiss={hideCreateModal}
     >
       <AppField
-        value={createTextFieldValue}
+        value={textFieldValue}
         placeholder={"Введите текст"}
-        onChange={createTextFieldHandler}
-        isDanger={isCreateTextFieldError}
+        onChange={textFieldHandler}
+        isDanger={isTextFieldError}
         dangerText="Пустое поле"
       />
       <AppField
-        value={createResponsibleFieldValue}
+        value={responsibleFieldValue}
         placeholder={"Введите имя ответственного"}
-        onChange={createResponsibleFieldHandler}
-        isDanger={isCreateResponsibleFieldError}
+        onChange={responsibleFieldHandler}
+        isDanger={isResponsibleFieldError}
         dangerText="Пустое поле"
       />
       <View style={styles.modalBtns}>
