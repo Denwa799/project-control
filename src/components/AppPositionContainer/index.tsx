@@ -3,15 +3,18 @@ import { View } from "react-native";
 import { styles } from "./styles";
 import { IAppHorizontalContainer } from "./types";
 
-export const AppHorizontalContainer: FC<IAppHorizontalContainer> = (
+export const AppPositionContainer: FC<IAppHorizontalContainer> = (
   {
     children,
-    style
+    style,
+    isHorizontal,
+    isCenter
   }
 ) => {
   return (
     <View style={[
-      styles.horizontal,
+      isHorizontal && styles.horizontal,
+      isCenter && styles.center,
       style
     ]}>{children}</View>
   );

@@ -11,6 +11,7 @@ import { styles } from "./styles";
 import { AppButton } from "../../components/AppButton";
 import { AppContainer } from "../../layouts/AppContainer";
 import { Modals } from "./Modals";
+import { AppPositionContainer } from "../../components/AppPositionContainer";
 
 export const MainScreen = () => {
   const navigation = useNavigation<StackNavigationProp<TeamScreenNavigateType>>();
@@ -48,29 +49,31 @@ export const MainScreen = () => {
   }, [teamId, name]);
 
   return isLoading
-    ? <View style={styles.loader}><AppLoader/></View>
+    ? <AppPositionContainer isCenter>
+      <AppLoader/>
+    </AppPositionContainer>
     : (
-    <View>
-      <AppList
-        data={teams}
-        onOpen={openTeamHandler}
-        style={styles.list}
-        onDelete={deleteIconHandler}
-        onChange={changeIconHandler}
-      />
-      <AppContainer style={styles.container}>
-        <AppButton onPress={showCreateModal} title="Создать команду"/>
-      </AppContainer>
-      <Modals
-        modalCreateVisible={modalCreateVisible}
-        setModalCreateVisible={setModalCreateVisible}
-        teamId={teamId}
-        dialogDeleteVisible={dialogDeleteVisible}
-        setDialogDeleteVisible={setDialogDeleteVisible}
-        name={name}
-        modalChangeVisible={modalChangeVisible}
-        setModalChangeVisible={setModalChangeVisible}
-      />
-    </View>
-  );
+      <View>
+        <AppList
+          data={teams}
+          onOpen={openTeamHandler}
+          style={styles.list}
+          onDelete={deleteIconHandler}
+          onChange={changeIconHandler}
+        />
+        <AppContainer style={styles.container}>
+          <AppButton onPress={showCreateModal} title="Создать команду"/>
+        </AppContainer>
+        <Modals
+          modalCreateVisible={modalCreateVisible}
+          setModalCreateVisible={setModalCreateVisible}
+          teamId={teamId}
+          dialogDeleteVisible={dialogDeleteVisible}
+          setDialogDeleteVisible={setDialogDeleteVisible}
+          name={name}
+          modalChangeVisible={modalChangeVisible}
+          setModalChangeVisible={setModalChangeVisible}
+        />
+      </View>
+    );
 };

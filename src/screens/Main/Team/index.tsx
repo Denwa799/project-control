@@ -11,6 +11,7 @@ import { AppLoader } from "../../../components/AppLoader";
 import { AppButton } from "../../../components/AppButton";
 import { AppContainer } from "../../../layouts/AppContainer";
 import { Modals } from "./Modals";
+import { AppPositionContainer } from "../../../components/AppPositionContainer";
 
 export const TeamScreen: FC<ITeamScreen> = ({ route: { params } }) => {
   const navigation = useNavigation<StackNavigationProp<ProjectScreenNavigateType>>();
@@ -50,7 +51,9 @@ export const TeamScreen: FC<ITeamScreen> = ({ route: { params } }) => {
   }, [projectId, name]);
 
   return isLoading
-    ? <View style={styles.loader}><AppLoader/></View>
+    ? <AppPositionContainer isCenter>
+      <AppLoader/>
+    </AppPositionContainer>
     : (
       <View>
         <AppList

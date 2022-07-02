@@ -9,6 +9,7 @@ import { useTasks } from "../../../../hooks/useTasks";
 import { styles } from "./styles";
 import { AppLoader } from "../../../../components/AppLoader";
 import { Modals } from "./Modals";
+import { AppPositionContainer } from "../../../../components/AppPositionContainer";
 
 export const ProjectScreen: FC<IProjectScreen> = ({ route: { params } }) => {
   const navigation = useNavigation();
@@ -43,12 +44,14 @@ export const ProjectScreen: FC<IProjectScreen> = ({ route: { params } }) => {
     setTaskId(_id);
     setText(text);
     setResponsible(responsible);
-    setStatus(status)
+    setStatus(status);
     setModalChangeVisible(true);
   }, [taskId, text, responsible, status]);
 
   return isLoading
-    ? <View style={styles.loader}><AppLoader/></View>
+    ? <AppPositionContainer isCenter>
+      <AppLoader/>
+    </AppPositionContainer>
     : (
       <View>
         <AppTextList
