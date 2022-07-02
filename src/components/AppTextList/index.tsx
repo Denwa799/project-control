@@ -3,7 +3,13 @@ import { FlatList, View } from "react-native";
 import { AppTextCard } from "../AppTextCard";
 import { IAppTextList } from "./types";
 
-export const AppTextList: FC<IAppTextList> = ({ data, style, onDelete, onChange }) => {
+export const AppTextList: FC<IAppTextList> = (
+  {
+    data,
+    style,
+    onDelete,
+    onChange
+  }) => {
   return (
     <View>
       <FlatList

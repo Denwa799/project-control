@@ -14,8 +14,13 @@ import { Modals } from "./Modals";
 
 export const TeamScreen: FC<ITeamScreen> = ({ route: { params } }) => {
   const navigation = useNavigation<StackNavigationProp<ProjectScreenNavigateType>>();
+  const [projectId, setProjectId] = useState("");
   const { teamId } = params;
+  const [name, setName] = useState("");
+
   const [modalCreateVisible, setModalCreateVisible] = useState(false);
+  const [modalChangeVisible, setModalChangeVisible] = useState(false);
+  const [dialogDeleteVisible, setDialogDeleteVisible] = useState(false);
 
   const { projects, isLoading } = useProjects(teamId);
 
@@ -33,6 +38,17 @@ export const TeamScreen: FC<ITeamScreen> = ({ route: { params } }) => {
     setModalCreateVisible(true);
   }, []);
 
+  const deleteIconHandler = useCallback((_id: string) => {
+    setProjectId(_id);
+    setDialogDeleteVisible(true);
+  }, [projectId]);
+
+  const changeIconHandler = useCallback((_id: string, name: string) => {
+    setProjectId(_id);
+    setModalChangeVisible(true);
+    setName(name);
+  }, [projectId, name]);
+
   return isLoading
     ? <View style={styles.loader}><AppLoader/></View>
     : (
@@ -41,6 +57,8 @@ export const TeamScreen: FC<ITeamScreen> = ({ route: { params } }) => {
           data={projects}
           onOpen={openProjectHandler}
           style={styles.list}
+          onDelete={deleteIconHandler}
+          onChange={changeIconHandler}
         />
         <AppContainer style={styles.container}>
           <AppButton onPress={showCreateModal} title="Создать проект"/>
@@ -49,6 +67,12 @@ export const TeamScreen: FC<ITeamScreen> = ({ route: { params } }) => {
           modalCreateVisible={modalCreateVisible}
           setModalCreateVisible={setModalCreateVisible}
           teamId={teamId}
+          projectId={projectId}
+          dialogDeleteVisible={dialogDeleteVisible}
+          setDialogDeleteVisible={setDialogDeleteVisible}
+          name={name}
+          modalChangeVisible={modalChangeVisible}
+          setModalChangeVisible={setModalChangeVisible}
         />
       </View>
     );

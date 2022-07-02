@@ -1,28 +1,26 @@
 import React, { FC } from "react";
-import { ModalChange } from "./ModalChange";
-import { ModalCreate } from "./ModalCreate";
 import { ModalDelete } from "./ModalDelete";
 import { IModals } from "./types";
+import { ModalCreate } from "./ModalCreate";
+import { ModalChange } from "./ModalChange";
 
 export const Modals: FC<IModals> = (
   {
     modalCreateVisible,
     setModalCreateVisible,
     teamId,
-    projectId,
     dialogDeleteVisible,
     setDialogDeleteVisible,
     modalChangeVisible,
     setModalChangeVisible,
     name
-  }
-) => {
-  const collectionPath = `teams/${teamId}/projects`;
+  }) => {
+  const collectionPath = `teams`;
 
   return (
     <>
       <ModalDelete
-        projectId={projectId}
+        teamId={teamId}
         collectionPath={collectionPath}
         dialogDeleteVisible={dialogDeleteVisible}
         setDialogDeleteVisible={setDialogDeleteVisible}
@@ -33,11 +31,11 @@ export const Modals: FC<IModals> = (
         collectionPath={collectionPath}
       />
       <ModalChange
-        name={name}
-        collectionPath={collectionPath}
         modalChangeVisible={modalChangeVisible}
         setModalChangeVisible={setModalChangeVisible}
-        projectId={projectId}
+        name={name}
+        teamId={teamId}
+        collectionPath={collectionPath}
       />
     </>
   );

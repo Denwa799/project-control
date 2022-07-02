@@ -10,7 +10,7 @@ export const useTeams = () => {
 
   useEffect(() => {
     const teamsRef = collection(db, "teams");
-    const queryRef = query(teamsRef, orderBy("name", "asc"));
+    const queryRef = query(teamsRef, orderBy("created", "asc"));
 
     onSnapshot(queryRef, snapshot => {
         setTeams(snapshot.docs.map(doc => ({

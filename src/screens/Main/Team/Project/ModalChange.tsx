@@ -18,65 +18,65 @@ export const ModalChange: FC<IModalChange> = (
     collectionPath,
     taskId
   }) => {
-  const [changeTextFieldValue, setChangeTextFieldValue] = useState(text);
-  const [changeResponsibleFieldValue, setChangeResponsibleFieldValue] = useState("");
+  const [textValue, setTextValue] = useState("");
+  const [responsibleValue, setResponsibleValue] = useState("");
 
-  const [isChangeTextFieldError, setIsChangeTextFieldError] = useState(false);
-  const [isChangeResponsibleFieldError, setIsChangeResponsibleFieldError] = useState(false);
+  const [isTextError, setIsTextError] = useState(false);
+  const [isResponsibleError, setIsResponsibleError] = useState(false);
 
   const [activeRadioBtn, setActiveRadioBtn] = useState("");
 
   useEffect(() => {
-    setChangeTextFieldValue(text);
-    setChangeResponsibleFieldValue(responsible);
+    setTextValue(text);
+    setResponsibleValue(responsible);
     setActiveRadioBtn(status);
   }, [modalChangeVisible]);
 
-  const hideChangeModal = useCallback(() => {
+  const hideModal = useCallback(() => {
     setModalChangeVisible(false);
   }, [modalChangeVisible]);
 
-  const changeTextFieldHandler = useCallback((value: string) => {
-    setChangeTextFieldValue(value);
-    setIsChangeTextFieldError(false);
-  }, [changeTextFieldValue]);
+  const textHandler = useCallback((value: string) => {
+    setTextValue(value);
+    setIsTextError(false);
+  }, [textValue]);
 
-  const changeResponsibleFieldHandler = useCallback((value: string) => {
-    setChangeResponsibleFieldValue(value);
-    setIsChangeResponsibleFieldError(false);
-  }, [changeResponsibleFieldValue]);
+  const responsibleHandler = useCallback((value: string) => {
+    setResponsibleValue(value);
+    setIsResponsibleError(false);
+  }, [responsibleValue]);
 
   const editTask = useCallback(() => {
-    if (!changeTextFieldValue) return setIsChangeTextFieldError(true);
-    if (!changeResponsibleFieldValue) return setIsChangeResponsibleFieldError(true);
+    if (!textValue) return setIsTextError(true);
+    if (!responsibleValue) return setIsResponsibleError(true);
 
     const data = {
-      text: changeTextFieldValue,
-      responsible: changeResponsibleFieldValue,
+      text: textValue,
+      responsible: responsibleValue,
       status: activeRadioBtn
     };
 
     updateDocument(collectionPath, taskId, data);
-    hideChangeModal();
-  }, [changeTextFieldValue, changeResponsibleFieldValue, activeRadioBtn]);
+    hideModal();
+  }, [textValue, responsibleValue, activeRadioBtn]);
 
   return (
     <AppModal
       visible={modalChangeVisible}
-      onDismiss={hideChangeModal}
+      onDismiss={hideModal}
     >
       <AppField
-        value={changeTextFieldValue}
+        value={textValue}
         placeholder={"Введите текст"}
-        onChange={changeTextFieldHandler}
-        isDanger={isChangeTextFieldError}
+        onChange={textHandler}
+        isDanger={isTextError}
         dangerText="Пустое поле"
       />
       <AppField
-        value={changeResponsibleFieldValue}
+        value={responsibleValue}
         placeholder={"Введите имя ответственного"}
-        onChange={changeResponsibleFieldHandler}
-        isDanger={isChangeResponsibleFieldError}
+        onChange={responsibleHandler}
+        isDanger={isResponsibleError}
         dangerText="Пустое поле"
       />
       <RadioBtns
@@ -84,7 +84,7 @@ export const ModalChange: FC<IModalChange> = (
         setActiveRadioBtn={setActiveRadioBtn}
       />
       <View style={styles.modalBtns}>
-        <AppTextButton onPress={hideChangeModal}>Закрыть</AppTextButton>
+        <AppTextButton onPress={hideModal}>Закрыть</AppTextButton>
         <AppTextButton onPress={editTask}>Сохранить</AppTextButton>
       </View>
     </AppModal>

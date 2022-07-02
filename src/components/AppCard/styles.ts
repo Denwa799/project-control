@@ -10,11 +10,17 @@ export const styles = StyleSheet.create({
     paddingTop: 20,
     paddingBottom: 20,
     paddingLeft: 20,
-    paddingRight: 20,
+    paddingRight: 10,
     borderRadius: SIZES.radius,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
   },
   text: {
     fontSize: SIZES.body2,
     color: THEME.SECOND_COLOR
+  },
+  cardHandler: {
+    width: '80%'
   }
 });
